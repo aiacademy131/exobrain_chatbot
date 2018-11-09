@@ -9,7 +9,7 @@ app.config['JSON_AS_ASCII'] = False
 
 EXCEL_FILE_NAME = 'Database.xlsx'
 db = load_workbook(filename=EXCEL_FILE_NAME)
-user_db = db['User_data']
+user_db = db['User']
 
 
 @app.route("/")
@@ -31,23 +31,54 @@ def Keyboard():
 
 
 @app.route("/message", methods=["POST"])
+@app.route("/message", methods=["GET"])
 def message():
     data = json.loads(request.data)
     content = data["content"]
-
     user_key = data["user_key"]
+
     for idx, row in enumerate(user_db.rows):
         if idx != 0 and row[0].value == user_key:
-            user = row
+            print('기존 사용자', row)
+            user_row = row
             break
 
         if idx == user_db.max_row - 1:
-            user_db[user_db.max_row+1][0].value = user_key
-            user_db[user_db.max_row][6].value = 0
+            print('새로운 사용자', row)
+            NEW_INDEX = user_db.max_row + 1
+            user_db[NEW_INDEX][0].value = user_key
+            user_db[NEW_INDEX][1].value = 0
             db.save(EXCEL_FILE_NAME)
+            user_row = user_db[user_db.max_row]
 
+            response = {
+                "message" : {
+                    "text" : "처음 오셨네요? 이름이 뭐에요?"
+                },
+                "keyboard" : {
+                    "type": "text"
+                }
+            }
+            return jsonify(response)
 
-    if content == u"처음으로":
+    if user_row[1].value is 0:
+        user_row[1].value = 1
+        user_row[2].value = content
+        db.save(EXCEL_FILE_NAME)
+
+        response = {
+            "message" : {
+                "text" : "{name}님, 반갑습니다.".format(name=content)
+            },
+            "keyboard" : {
+                "type": "buttons",
+                "buttons": ["학원소개", "시간표", "홈으로"]
+            }
+        }
+
+        return jsonify(response)
+
+    if content == u"홈으로":
         response = {
             "message" : {
                 "text" : "원하시는 정보 버튼을 눌러주세요."

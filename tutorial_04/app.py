@@ -80,7 +80,21 @@ def message():
         return jsonify(response)
 
     try:
-        response = excel_db.get_response(content, user_row)
+        if content == u"수업소개":
+            response = {
+                "message" : {
+                    "text" : "학습 수준을 알려주세요."
+                },
+                "keyboard" : {
+                    "type" : "buttons",
+                    "buttons" : ["초급", "중급", "고급"]
+                }
+            }
+        elif content in ["초급", "중급", "고급"]:
+            response = excel_db.get_lectures(content, user_row)
+
+        else:
+            response = excel_db.get_response(content, user_row)
 
     except:
         response = {

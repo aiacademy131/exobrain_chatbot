@@ -9,10 +9,31 @@ lecture_db  = db['Lecture']
 user_db     = db['User']
 response_db = db['Response']
 
+
+def get_lectures(content, user_row):
+    user_state = user_row[1].value
+
+    lectures = []
+    for row in lecture_db:
+        user_level = row[7].value
+        if user_level is not None and user_level in content:
+            lectures.append(row[0].value)
+    print('lectures', lectures)
+    response = {
+        "message" : {
+            "text" : "강의 추천합니다."
+        },
+        "keyboard" : {
+            "type" : "buttons",
+            "buttons" : lectures
+        }
+    }
+    return response
+
+
 def get_response(content, user_row):
     user_state = user_row[1].value
 
-    data = []
     for row in response_db:
         if row[0].value == content:
             message = row[1].value
