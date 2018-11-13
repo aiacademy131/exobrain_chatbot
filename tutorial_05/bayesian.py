@@ -1,5 +1,5 @@
 import math, sys
-from Text_Analysis import exobrainNLU
+from exobrain_api import exobrainNLU
 
 class Filter:
 
@@ -73,5 +73,3 @@ class Filter:
         n = self.get_word_count(word, category) + 1
         d = sum(self.word_dict[category].values()) + len(self.words)
         return n/d
-
-

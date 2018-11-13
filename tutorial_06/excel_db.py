@@ -29,6 +29,14 @@ def get_lectures(content, user_row):
     }
     return response
 
+def get_text_for_ml():
+    info_dic = {}
+    info_sets = []
+    for row in lecture_db:
+        if '[' in row[0].value:
+            info_dic = (row[0].value,row[1].value.split('.'))
+            info_sets.append(info_dic)
+    return info_sets
 
 def get_response(content, user_row):
     user_state = user_row[1].value

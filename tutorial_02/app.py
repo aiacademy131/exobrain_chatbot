@@ -1,6 +1,7 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*
 
+# 엑셀에 사용자 정보를 기억하고 불러오기
 from flask import Flask, request, jsonify, json
 from openpyxl import load_workbook, cell
 

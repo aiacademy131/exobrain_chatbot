@@ -1,6 +1,7 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*
 
+# 카카오플러스 기본 UI 사용하기 - 버튼, 이미지, URL
 from flask import Flask, request, jsonify, json
 
 app = Flask(__name__)

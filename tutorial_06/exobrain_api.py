@@ -31,7 +31,7 @@ def exobrainNLU(type, sentence):
     #type Dic 형태를 list로 전환해서 return
     return list(data["return_object"]['sentence'])
 
-def keyword_check(sentence):
+def get_date_from_sentence(sentence):
     keyword_sets = []
     malist = exobrainNLU("ner",sentence)
     #print(malist)

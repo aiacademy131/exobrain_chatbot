@@ -1,6 +1,7 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*
 
+# 엑셀로 구현하는 카카오플러스 기본 UI - 버튼, 이미지, URL
 from flask import Flask, request, jsonify, json
 from openpyxl import load_workbook, cell
 import excel_db
