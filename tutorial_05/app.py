@@ -1,6 +1,8 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*
 
+# 사용자 메시지를 분석하여 bayesian 알고리즘으로 강의 추천
+
 from flask import Flask, request, jsonify, json
 from openpyxl import load_workbook, cell
 from exobrain_api import exobrainNLU
