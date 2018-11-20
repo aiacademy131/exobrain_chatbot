@@ -28,6 +28,7 @@ def get_lectures(content, user_row):
     }
     return response
 
+# 엑셀에서 학습을 위한 데이터를 가져옴
 def get_text_for_ml():
     info_dic = {}
     info_sets = []

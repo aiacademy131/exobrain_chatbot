@@ -5,7 +5,7 @@
 # 엑셀에 데이터 입력을 통해 구현되도록 해본다.
 # 즉, 엑셀을 통한 챗봇 빌더 기능을 구현해본다.
 from flask import Flask, request, jsonify, json
-from openpyxl import load_workbook, cell
+from openpyxl import load_workbook
 import excel_db
 
 app = Flask(__name__)

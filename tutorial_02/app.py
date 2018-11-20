@@ -5,7 +5,7 @@
 # 처음으면 사용자의 이름을 묻고 해당 정보를 엑셀에 저장한다.
 # 파이썬 엑셀파일 처리 라이브러리(openpyxl)사용법을 이해한다.
 from flask import Flask, request, jsonify, json
-from openpyxl import load_workbook, cell
+from openpyxl import load_workbook
 
 app = Flask(__name__)
 

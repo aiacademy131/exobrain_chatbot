@@ -2,7 +2,7 @@
 
 # [04.사용자에게 강좌 추천하기]
 from flask import Flask, request, jsonify, json
-from openpyxl import load_workbook, cell
+from openpyxl import load_workbook
 import excel_db
 
 app = Flask(__name__)

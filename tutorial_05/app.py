@@ -2,8 +2,13 @@
 
 # [05.엑소브레인 형태소 분석 API 와 머신러닝 적용하여 강좌 추천하기]
 from flask import Flask, request, jsonify, json
-from openpyxl import load_workbook, cell
-from exobrain_api import exobrainNLU
+from openpyxl import load_workbook
+
+# 나이브 베이즈 분류 (Naive Bayesian classification)
+# 데이터셋의 모든 특징들이 동등하고 독립적이라고 가정
+# 예를들어 비가 오는 날에는 시간보다는 습도가 더 중요한 변수가 될 수 있지만
+# 나이브베이지안 에서는 이런 사실을 무시
+# 이런 가정에도 불구하고 분류학습에서 매우 정확한 결과를 내놓음
 from bayesian import Filter
 
 import excel_db
@@ -80,13 +85,19 @@ def message():
 
     # [05.엑소브레인 형태소 분석 API 와 머신러닝 적용하여 강좌 추천하기]
     if user_row[1].value is USER_STATE_REQUEST_LECTURE:
+
+        # bayesian Filter의 인스턴스 객체를 가져옴
         bf = Filter()
+
+        # 엑셀에서 학습을 위한 데이터를 가져옴
         b_data = excel_db.get_text_for_ml()
 
+        # 데이터 학습시키기
         for i in range(len(b_data)):
             for k in range(len(b_data[i][1][:-1])):
                 bf.fit(b_data[i][1][k], b_data[i][0])
 
+        # 사용자의 입력 문구에서 적합한 강좌 추천하기
         pre, scorelist = bf.predict(content)
         response = {
             "message" : {

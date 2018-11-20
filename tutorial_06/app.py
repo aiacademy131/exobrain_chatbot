@@ -106,6 +106,8 @@ def message():
     # [06.엑소브레인 개체명 인식 API 적용하여 날짜, 시간정보 추출하여 예약하기]
     if user_row[1].value is USER_STATE_REQUEST_RESERVATION:
         date_sentence = []
+
+        # 엑소브레인 개체명 인식 API 를 사용하여, 문장에서 날짜, 시간, 장소정보 추출하기
         date_set = get_date_from_sentence(content)
         for k in range(len(date_set)):
             date_text = "".join(date_set[k][1]) + " : " + "".join(date_set[k][0]) + "\n"
