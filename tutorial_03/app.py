@@ -79,6 +79,7 @@ def message():
         # [03.엑셀로 카카오플러스 기본 UI 구현하기 - 엑셀챗봇빌더]
         response = excel_db.get_response(content, user_row)
 
+    # 예기치 않은 에러발생시, 아래와 같은 메시지를 사용자에게 전달한다.
     except:
         response = {
             "message" : {
