@@ -24,8 +24,7 @@ def message():
         }
     }
 
-    response = json.dumps(response, ensure_ascii=False)
-    return response
+    return jsonify(response)
 
 
 if __name__ == "__main__":
