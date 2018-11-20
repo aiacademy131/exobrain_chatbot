@@ -5,6 +5,7 @@ from flask import Flask, request, jsonify, json
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def say_hi():
     return "안녕하세요. 아카데미의 챗봇입니다."
@@ -73,6 +74,7 @@ def message():
         }
 
     return jsonify(response)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
