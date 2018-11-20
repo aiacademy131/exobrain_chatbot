@@ -4,7 +4,7 @@ import json
 openApiURL = "http://aiopen.etri.re.kr:8000/WiseNLU"
 accessKey = "4ee51c5e-7d13-4f91-9516-5f68c4fe26f3"
 # AnaylsisCode = morp - 형태소 분석 / wsd - 어휘 의미 분석(동음이의) / wsd_poly - 어휘 의미 분석(다의)
-#                ner - 개채명 인식 / dparse - 의존 구문 / srl - 의미역
+#                ner - 개체명 인식 / dparse - 의존 구문 / srl - 의미역
 
 
 def exobrainNLU(type, sentence):
@@ -35,6 +35,7 @@ def exobrainNLU(type, sentence):
 # 엑소브레인 개체명 인식 API 를 사용하여, 문장에서 날짜, 시간, 장소정보 추출하기
 def get_date_from_sentence(sentence):
     keyword_sets = []
+    # 엑소브레인 API - 개체명 인식 (ner)
     malist = exobrainNLU("ner",sentence)
     #print(malist)
     for i in range(len(malist[0]['NE'])):

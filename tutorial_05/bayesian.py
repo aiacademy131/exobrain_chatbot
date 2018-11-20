@@ -10,6 +10,8 @@ class Filter:
 
     def split(self, text):
         results = []
+
+        # 엑소브레인 API - 형태소 분석 (morp)
         malist = exobrainNLU('morp', text)
 
         for word in malist:
