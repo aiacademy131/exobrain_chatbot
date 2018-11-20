@@ -1,5 +1,6 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*
 
+# Helloworld 로 시작하기
 from flask import Flask
 from flask import jsonify
 from flask import json
