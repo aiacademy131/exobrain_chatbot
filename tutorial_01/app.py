@@ -6,6 +6,9 @@ from flask import Flask, request, jsonify, json
 app = Flask(__name__)
 
 
+# [Home Keyboard API]
+# 이용자가 최초로 채팅방에 들어올 때 기본으로 키보드 영역에
+# 표시될 자동응답 명령어의 목록을 호출하는 API입니다.
 @app.route("/keyboard")
 def Keyboard():
 
@@ -18,12 +21,17 @@ def Keyboard():
     }
     return jsonify(response)
 
-
+# [메시지 수신 및 자동응답 API]
+# 사용자가 선택한 명령어를 파트너사 서버로 전달하는 API
+# 자동응답 명령어에 대한 답변은 응답 메시지(Message)와
+# 응답 메시지에 따른 키보드 영역의 답변 방식(Keyboard)의 조합으로 이루어짐
+# 답변 방식은 주관식(text)과 객관식(buttons) 중 선택할 수 있음
 @app.route("/message", methods=["POST"])
 def message():
     data = json.loads(request.data)
     content = data["content"]
 
+    # 기본 버튼 UI
     if content == u"홈으로":
         response = {
             "message" : {
@@ -35,7 +43,7 @@ def message():
             }
         }
 
-    # 기본버텬으로 보여주기
+    # 기본 버튼 UI
     elif content == u"학원소개":
         response = {
             "message" : {
