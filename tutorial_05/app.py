@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*
 
-# 사용자 메시지를 분석하여 bayesian 알고리즘으로 강의 추천
-
+# 엑소브레인 형태소 분석 API 와 머신러닝 적용하여 강좌 추천하기
 from flask import Flask, request, jsonify, json
 from openpyxl import load_workbook, cell
 from exobrain_api import exobrainNLU

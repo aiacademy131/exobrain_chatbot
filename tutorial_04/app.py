@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
 
-# 사용자로부터 정보를 입력받아 추천하기
+# 사용자에게 강좌 추천하기
 from flask import Flask, request, jsonify, json
 from openpyxl import load_workbook, cell
 import excel_db

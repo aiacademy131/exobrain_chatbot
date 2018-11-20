@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*
 
-# 사용자 메시지를 분석하여 날짜, 시간정보 추출하기
-
+# 엑소브레인 개체명 인식 API 적용하여 날짜, 시간정보 추출하여 예약하기
 from flask import Flask, request, jsonify, json
 from openpyxl import load_workbook, cell
 from exobrain_api import exobrainNLU, get_date_from_sentence

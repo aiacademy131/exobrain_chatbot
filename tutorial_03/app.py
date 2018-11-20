@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*
 
-# 엑셀로 구현하는 카카오플러스 기본 UI - 버튼, 이미지, URL
-# 프로그래밍 스킬 - 좀더 복잡한 엑셀 사용법
-# 챗봇 구현 팁 - 엑셀로 카카오 UI 구현
+# 엑셀로 카카오플러스 기본 UI 구현하기
 from flask import Flask, request, jsonify, json
 from openpyxl import load_workbook, cell
 import excel_db
