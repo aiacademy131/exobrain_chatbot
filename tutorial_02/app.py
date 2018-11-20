@@ -1,14 +1,21 @@
-# !/usr/bin/python
 # -*- coding: utf-8 -*
 
-# 엑셀로 사용자 정보 관리하기
+# [엑셀로 사용자 정보 관리하기]
+# 이용자가 최초로 채팅방에 들어올 때 사용자 정보가 없는지 확인
+# 처음으면 사용자의 이름을 묻고 해당 정보를 엑셀에 저장한다.
+# 파이썬 엑셀파일 처리 라이브러리(openpyxl)사용법을 이해한다.
 from flask import Flask, request, jsonify, json
 from openpyxl import load_workbook, cell
 
 app = Flask(__name__)
 
+# 사용자 정보를 관리할 엑셀파일이름
 EXCEL_FILE_NAME = 'Database.xlsx'
+
+# openpyxl.load_workbook(엑셀파일명)함수 호출로 Workbook 객체를 얻는다.
 db = load_workbook(filename=EXCEL_FILE_NAME)
+
+# 엑셀파일에서 "User" 시트 접근 가능한 객체를 가져온다.
 user_db = db['User']
 
 
@@ -26,7 +33,6 @@ def Keyboard():
 
 
 @app.route("/message", methods=["POST"])
-@app.route("/message", methods=["GET"])
 def message():
     data = json.loads(request.data)
     content = data["content"]

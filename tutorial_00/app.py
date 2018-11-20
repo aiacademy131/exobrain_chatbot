@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*
 
-# Helloworld 으로 시작하기
+# [Helloworld 으로 시작하기]
+# 이용자가 플러스친구에게 메시지를 보내면
+# "Hello, World!" 라는 응답 메시지를 전송하는 기능을 구현해 본다.
 from flask import Flask, jsonify
 
 # Flask 인스턴스를 생성하여 app 에 할당
