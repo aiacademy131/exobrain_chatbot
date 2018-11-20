@@ -30,6 +30,9 @@ def Keyboard():
 # 답변 방식은 주관식(text)과 객관식(buttons) 중 선택할 수 있음
 @app.route("/message", methods=["POST"])
 def message():
+
+    # 사용자가 플러스친구 API 서버에 보낸 메시지 가져오기
+    # 사용자 메시지는 request.data.content 에 담겨있다.
     data = json.loads(request.data)
     content = data["content"]
 

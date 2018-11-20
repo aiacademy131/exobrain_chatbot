@@ -36,16 +36,23 @@ def Keyboard():
 def message():
     data = json.loads(request.data)
     content = data["content"]
+
+    # 플러스친구 API 서버에서 사용자의 키값을 request 에 담아 보내준다.
+    # 사용자 키값은 request.data.user_key 에 담겨있다.
     user_key = data["user_key"]
 
     for idx, row in enumerate(user_db.rows):
+
+        # 엑셀 User 시트의 사용자정보 목록에서 현재 사용자의 키값이 저장되어 있으면
+        # 기존 사용자라 판단하고 해당 객체를 user_row 변수에 보관한다.
         if idx != 0 and row[0].value == user_key:
-            print('기존 사용자', row)
             user_row = row
             break
 
+        # 엑셀 User 시트의 사용자정보 목록에서 현재 사용자의 키값이 없다면
+        # 신규 사용자라 판단하고 해당 정보를 엑셀에 '저장'하고
+        # 해당 객체를 user_row 변수에 보관한다.
         if idx == user_db.max_row - 1:
-            print('새로운 사용자', row)
             NEW_INDEX = user_db.max_row + 1
             user_db[NEW_INDEX][0].value = user_key
             user_db[NEW_INDEX][1].value = 0
@@ -62,6 +69,9 @@ def message():
             }
             return jsonify(response)
 
+    # user_row[1] 은 엑셀의 User 시트에서 두번째 열 '상태'를 가리킨다.
+    # User 시트에서 상태값을 체크하여
+    # 사용자의 이름을 엑셀 User 시트에 저장한다.
     if user_row[1].value is 0:
         user_row[1].value = 1
         user_row[2].value = content
@@ -90,7 +100,6 @@ def message():
             }
         }
 
-    # 기본버텬으로 보여주기
     elif content == u"학원소개":
         response = {
             "message" : {
@@ -102,7 +111,6 @@ def message():
             }
         }
 
-    # 이미지와 외부 URL 링크 보여주기
     elif content == u"시간표":
         response = {
             "message" : {
