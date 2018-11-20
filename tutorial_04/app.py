@@ -76,10 +76,14 @@ def message():
 
         # [04.사용자에게 강좌 추천하기]
         if content == u"수업소개":
-
+            # 엑셀 User 시트에서 '수준'열의 값이 있다면,
+            # 엑셀에서 사용자의 '수준'에 해당되는 Lecture 정보를 가져온다.
             if user_row[3].value is not None:
                 level = user_row[3].value
                 response = excel_db.get_lectures(level, user_row)
+
+            # 엑셀 User 시트에서 '수준'열의 값이 없다면,
+            # 사용자의 학습 수준을 물어본다.
             else:
                 response = {
                     "message" : {
@@ -90,6 +94,8 @@ def message():
                         "buttons" : ["초급", "중급", "고급"]
                     }
                 }
+
+        # 엑셀에서 사용자의 '수준'에 해당되는 Lecture 정보를 가져온다.
         elif content in ["초급", "중급", "고급"]:
             user_row[3].value = content
             db.save(EXCEL_FILE_NAME)

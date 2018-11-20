@@ -4,7 +4,6 @@ from openpyxl import load_workbook
 EXCEL_FILE_NAME = 'Database.xlsx'
 db = load_workbook(filename=EXCEL_FILE_NAME)
 
-seminar_db  = db['Seminar']
 lecture_db  = db['Lecture']
 user_db     = db['User']
 response_db = db['Response']

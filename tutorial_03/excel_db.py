@@ -4,15 +4,21 @@ from openpyxl import load_workbook
 EXCEL_FILE_NAME = 'Database.xlsx'
 db = load_workbook(filename=EXCEL_FILE_NAME)
 
-seminar_db  = db['Seminar']
-lecture_db  = db['Lecture']
-user_db     = db['User']
 response_db = db['Response']
 
+
+# [03.엑셀로 카카오플러스 기본 UI 구현하기 - 엑셀챗봇빌더]
 def get_response(content, user_row):
     user_state = user_row[1].value
 
     data = []
+
+    # 엑셀파일의 Response 시트에서 시나리오 데이터 가져오기
+    # row[0] : 자동응답 버턴 명령어의 글자
+    # row[1] : message
+    # row[2] : photo_url
+    # row[3] : message_button
+    # row[4] : keyboard
     for row in response_db:
         if row[0].value == content:
             message = row[1].value

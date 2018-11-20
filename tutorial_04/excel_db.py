@@ -4,12 +4,12 @@ from openpyxl import load_workbook
 EXCEL_FILE_NAME = 'Database.xlsx'
 db = load_workbook(filename=EXCEL_FILE_NAME)
 
-seminar_db  = db['Seminar']
 lecture_db  = db['Lecture']
-user_db     = db['User']
 response_db = db['Response']
 
 
+# [04.사용자에게 강좌 추천하기]
+# 엑셀에서 사용자의 '수준'에 해당되는 Lecture 정보를 가져온다.
 def get_lectures(content, user_row):
     user_state = user_row[1].value
 
@@ -30,6 +30,7 @@ def get_lectures(content, user_row):
     return response
 
 
+# [03.엑셀로 카카오플러스 기본 UI 구현하기 - 엑셀챗봇빌더]
 def get_response(content, user_row):
     user_state = user_row[1].value
 
