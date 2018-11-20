@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
 
-# Helloworld 로 시작하기
+# Helloworld 으로 시작하기
 from flask import Flask
 from flask import jsonify
 from flask import json
@@ -29,4 +29,4 @@ def message():
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=80)
+    app.run(host='0.0.0.0', port=80, debug=True)
