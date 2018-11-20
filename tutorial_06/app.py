@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
 
-# 엑소브레인 개체명 인식 API 적용하여 날짜, 시간정보 추출하여 예약하기
+# [06.엑소브레인 개체명 인식 API 적용하여 날짜, 시간정보 추출하여 예약하기]
 from flask import Flask, request, jsonify, json
 from openpyxl import load_workbook, cell
 from exobrain_api import exobrainNLU, get_date_from_sentence
@@ -40,6 +40,7 @@ def message():
     content = data["content"]
     user_key = data["user_key"]
 
+    # [02.엑셀로 사용자 정보 관리하기]
     for idx, row in enumerate(user_db.rows):
         if idx != 0 and row[0].value == user_key:
             user_row = row
@@ -78,6 +79,7 @@ def message():
         db.save(EXCEL_FILE_NAME)
         return jsonify(response)
 
+    # [05.엑소브레인 형태소 분석 API 와 머신러닝 적용하여 강좌 추천하기]
     if user_row[1].value is USER_STATE_REQUEST_LECTURE:
         bf = Filter()
         b_data = excel_db.get_text_for_ml()
@@ -101,6 +103,7 @@ def message():
         db.save(EXCEL_FILE_NAME)
         return jsonify(response)
 
+    # [06.엑소브레인 개체명 인식 API 적용하여 날짜, 시간정보 추출하여 예약하기]
     if user_row[1].value is USER_STATE_REQUEST_RESERVATION:
         date_sentence = []
         date_set = get_date_from_sentence(content)
@@ -124,6 +127,7 @@ def message():
         return jsonify(response)
 
     try:
+        # [04.사용자에게 강좌 추천하기]
         if content == u"수업소개":
             if user_row[3].value is not None:
                 level = user_row[3].value
@@ -138,11 +142,13 @@ def message():
                         "buttons" : ["초급", "중급", "고급"]
                     }
                 }
+
         elif content in ["초급", "중급", "고급"]:
             user_row[3].value = content
             db.save(EXCEL_FILE_NAME)
             response = excel_db.get_lectures(content, user_row)
 
+        # [05.엑소브레인 형태소 분석 API 와 머신러닝 적용하여 강좌 추천하기]
         elif content == u"수업소개(대화)":
             user_row[1].value = USER_STATE_REQUEST_LECTURE
             db.save(EXCEL_FILE_NAME)
@@ -155,6 +161,8 @@ def message():
                     "type" : "text"
                 }
             }
+
+        # [06.엑소브레인 개체명 인식 API 적용하여 날짜, 시간정보 추출하여 예약하기]
         elif content == u"사전예약":
             user_row[1].value = USER_STATE_REQUEST_RESERVATION
             db.save(EXCEL_FILE_NAME)
@@ -168,6 +176,7 @@ def message():
                 }
             }
         else:
+            # [03.엑셀로 카카오플러스 기본 UI 구현하기 - 엑셀챗봇빌더]
             response = excel_db.get_response(content, user_row)
 
     except:

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
 
-# [엑셀로 사용자 정보 관리하기]
+# [02.엑셀로 사용자 정보 관리하기]
 # 이용자가 최초로 채팅방에 들어올 때 사용자 정보가 없는지 확인
 # 처음으면 사용자의 이름을 묻고 해당 정보를 엑셀에 저장한다.
 # 파이썬 엑셀파일 처리 라이브러리(openpyxl)사용법을 이해한다.
@@ -41,8 +41,8 @@ def message():
     # 사용자 키값은 request.data.user_key 에 담겨있다.
     user_key = data["user_key"]
 
+    # [02.엑셀로 사용자 정보 관리하기]
     for idx, row in enumerate(user_db.rows):
-
         # 엑셀 User 시트의 사용자정보 목록에서 현재 사용자의 키값이 저장되어 있으면
         # 기존 사용자라 판단하고 해당 객체를 user_row 변수에 보관한다.
         if idx != 0 and row[0].value == user_key:
@@ -89,6 +89,7 @@ def message():
 
         return jsonify(response)
 
+    # [01.카카오플러스 기본 UI 구현하기]
     if content == u"홈으로":
         response = {
             "message" : {
@@ -132,6 +133,7 @@ def message():
         }
 
     return jsonify(response)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=80, debug=True)

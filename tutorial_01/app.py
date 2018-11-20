@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
 
-# [카카오플러스 기본 UI 구현하기]
+# [01.카카오플러스 기본 UI 구현하기]
 # 카카오플러스의 기본 UI 기능을 파이썬 기본 문법으로 구현해본다.
 # 이를 통해 카카오플러스의 auto reply 오픈 api 사용법을 익힌다.
 from flask import Flask, request, jsonify, json
@@ -36,6 +36,8 @@ def message():
     data = json.loads(request.data)
     content = data["content"]
 
+
+    # [01.카카오플러스 기본 UI 구현하기]
     # 기본 버튼 UI
     if content == u"홈으로":
         response = {

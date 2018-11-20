@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
 
-# 사용자에게 강좌 추천하기
+# [04.사용자에게 강좌 추천하기]
 from flask import Flask, request, jsonify, json
 from openpyxl import load_workbook, cell
 import excel_db
@@ -32,14 +32,13 @@ def message():
     content = data["content"]
     user_key = data["user_key"]
 
+    # [02.엑셀로 사용자 정보 관리하기]
     for idx, row in enumerate(user_db.rows):
         if idx != 0 and row[0].value == user_key:
-            print('기존 사용자', row)
             user_row = row
             break
 
         if idx == user_db.max_row - 1:
-            print('새로운 사용자', row)
             NEW_INDEX = user_db.max_row + 1
             user_db[NEW_INDEX][0].value = user_key
             user_db[NEW_INDEX][1].value = 0
@@ -74,6 +73,8 @@ def message():
         return jsonify(response)
 
     try:
+
+        # [04.사용자에게 강좌 추천하기]
         if content == u"수업소개":
 
             if user_row[3].value is not None:
@@ -95,6 +96,7 @@ def message():
             response = excel_db.get_lectures(content, user_row)
 
         else:
+            # [03.엑셀로 카카오플러스 기본 UI 구현하기 - 엑셀챗봇빌더]
             response = excel_db.get_response(content, user_row)
 
     except:
