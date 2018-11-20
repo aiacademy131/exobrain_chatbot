@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
 
-# [06.엑소브레인 개체명 인식 API 적용하여 날짜, 시간정보 추출하여 예약하기]
+# [06.엑소브레인 개체명 인식 API 와 예약관리]
 from flask import Flask, request, jsonify, json
 from openpyxl import load_workbook, cell
 from exobrain_api import exobrainNLU, get_date_from_sentence
@@ -79,7 +79,7 @@ def message():
         db.save(EXCEL_FILE_NAME)
         return jsonify(response)
 
-    # [05.엑소브레인 형태소 분석 API 와 머신러닝 적용하여 강좌 추천하기]
+    # [05.엑소브레인 형태소 분석 API 와 베이지안 알고리즘 적용]
     if user_row[1].value is USER_STATE_REQUEST_LECTURE:
         bf = Filter()
         b_data = excel_db.get_text_for_ml()
@@ -103,7 +103,7 @@ def message():
         db.save(EXCEL_FILE_NAME)
         return jsonify(response)
 
-    # [06.엑소브레인 개체명 인식 API 적용하여 날짜, 시간정보 추출하여 예약하기]
+    # [06.엑소브레인 개체명 인식 API 와 예약관리]
     if user_row[1].value is USER_STATE_REQUEST_RESERVATION:
         date_sentence = []
 
@@ -150,7 +150,7 @@ def message():
             db.save(EXCEL_FILE_NAME)
             response = excel_db.get_lectures(content, user_row)
 
-        # [05.엑소브레인 형태소 분석 API 와 머신러닝 적용하여 강좌 추천하기]
+        # [05.엑소브레인 형태소 분석 API 와 베이지안 알고리즘 적용]
         elif content == u"수업소개(대화)":
             user_row[1].value = USER_STATE_REQUEST_LECTURE
             db.save(EXCEL_FILE_NAME)
@@ -164,7 +164,7 @@ def message():
                 }
             }
 
-        # [06.엑소브레인 개체명 인식 API 적용하여 날짜, 시간정보 추출하여 예약하기]
+        # [06.엑소브레인 개체명 인식 API 와 예약관리]
         elif content == u"사전예약":
             user_row[1].value = USER_STATE_REQUEST_RESERVATION
             db.save(EXCEL_FILE_NAME)

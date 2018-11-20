@@ -31,7 +31,7 @@ def exobrainNLU(type, sentence):
     return list(data["return_object"]['sentence'])
 
 
-# [06.엑소브레인 개체명 인식 API 적용하여 날짜, 시간정보 추출하여 예약하기]
+# [06.엑소브레인 개체명 인식 API 와 예약관리]
 # 엑소브레인 개체명 인식 API 를 사용하여, 문장에서 날짜, 시간, 장소정보 추출하기
 def get_date_from_sentence(sentence):
     keyword_sets = []

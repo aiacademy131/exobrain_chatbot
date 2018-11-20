@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*
 
-# [05.엑소브레인 형태소 분석 API 와 머신러닝 적용하여 강좌 추천하기]
+# [05.엑소브레인 형태소 분석 API 와 베이지안 알고리즘 적용]
 from flask import Flask, request, jsonify, json
 from openpyxl import load_workbook
 
@@ -83,7 +83,7 @@ def message():
         db.save(EXCEL_FILE_NAME)
         return jsonify(response)
 
-    # [05.엑소브레인 형태소 분석 API 와 머신러닝 적용하여 강좌 추천하기]
+    # [05.엑소브레인 형태소 분석 API 와 베이지안 알고리즘 적용]
     if user_row[1].value is USER_STATE_REQUEST_LECTURE:
 
         # bayesian Filter의 인스턴스 객체를 가져옴
@@ -134,7 +134,7 @@ def message():
             db.save(EXCEL_FILE_NAME)
             response = excel_db.get_lectures(content, user_row)
 
-        # [05.엑소브레인 형태소 분석 API 와 머신러닝 적용하여 강좌 추천하기]
+        # [05.엑소브레인 형태소 분석 API 와 베이지안 알고리즘 적용]
         elif content == u"수업소개(대화)":
             user_row[1].value = USER_STATE_REQUEST_LECTURE
             db.save(EXCEL_FILE_NAME)
