@@ -13,11 +13,6 @@ db = load_workbook(filename=EXCEL_FILE_NAME)
 user_db = db['User']
 
 
-@app.route("/")
-def say_hi():
-    return "안녕하세요. 아카데미의 챗봇입니다."
-
-
 @app.route("/keyboard")
 def Keyboard():
 

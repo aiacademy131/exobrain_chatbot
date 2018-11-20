@@ -21,11 +21,6 @@ USER_STATE_REQUEST_LECTURE = 2
 USER_STATE_REQUEST_RESERVATION = 3
 
 
-@app.route("/")
-def say_hi():
-    return "안녕하세요. 아카데미의 챗봇입니다."
-
-
 @app.route("/keyboard")
 def Keyboard():
 
