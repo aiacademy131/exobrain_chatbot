@@ -1,12 +1,9 @@
-# !/usr/bin/python
 # -*- coding: utf-8 -*
 
 # 카카오플러스 기본 UI 사용하기 - 버튼, 이미지, URL
 from flask import Flask, request, jsonify, json
 
 app = Flask(__name__)
-app.config['JSON_AS_ASCII'] = False
-
 
 @app.route("/")
 def say_hi():
@@ -19,7 +16,7 @@ def Keyboard():
     response = {
         "message" : {
             "text" : "원하시는 버튼을 눌러주세요."
-        },
+        },ㅣ
         "type" : "buttons",
         "buttons" : ["홈으로"]
     }

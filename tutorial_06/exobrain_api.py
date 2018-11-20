@@ -25,7 +25,6 @@ def exobrainNLU(type, sentence):
         body = json.dumps(requestJson, indent= 2)
     )
 
-
     data = json.loads(response.data.decode('utf-8'))
 
     #type Dic 형태를 list로 전환해서 return

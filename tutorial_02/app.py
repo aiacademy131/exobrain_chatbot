@@ -3,12 +3,11 @@
 
 # 엑셀에 사용자 정보를 기억하고 불러오기
 # 프로그래밍 스킬 - 엑셀 사용법
-# 챗봇 구현 팁 - 엑셀로 사용자 정보관리 
+# 챗봇 구현 팁 - 엑셀로 사용자 정보관리
 from flask import Flask, request, jsonify, json
 from openpyxl import load_workbook, cell
 
 app = Flask(__name__)
-app.config['JSON_AS_ASCII'] = False
 
 EXCEL_FILE_NAME = 'Database.xlsx'
 db = load_workbook(filename=EXCEL_FILE_NAME)

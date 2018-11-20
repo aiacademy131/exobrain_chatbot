@@ -1,4 +1,3 @@
-# !/usr/bin/python
 # -*- coding: utf-8 -*
 
 # 사용자로부터 정보를 입력받아 추천하기
@@ -7,7 +6,6 @@ from openpyxl import load_workbook, cell
 import excel_db
 
 app = Flask(__name__)
-app.config['JSON_AS_ASCII'] = False
 
 EXCEL_FILE_NAME = 'Database.xlsx'
 db = load_workbook(filename=EXCEL_FILE_NAME)

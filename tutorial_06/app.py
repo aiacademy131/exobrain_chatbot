@@ -1,4 +1,3 @@
-# !/usr/bin/python
 # -*- coding: utf-8 -*
 
 # 사용자 메시지를 분석하여 날짜, 시간정보 추출하기
@@ -11,7 +10,6 @@ from bayesian import Filter
 import excel_db
 
 app = Flask(__name__)
-app.config['JSON_AS_ASCII'] = False
 
 EXCEL_FILE_NAME = 'Database.xlsx'
 db = load_workbook(filename=EXCEL_FILE_NAME)
